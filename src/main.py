@@ -63,5 +63,8 @@ import time
 # for gagnant_ref in groupes_gagnants:
 #     print(gagnant_ref)
 
-a = Entreprise("test", "MQ", True, [30000, 7.5, 120000], [100000, 75, 38000])
+distrib_a = ['A', 0.2, 1, 1000]
+distrib_b = ['B', 0.2, 1.2, 5000000]
+
+a = Entreprise("test", distrib_a, "MQ", [30000, 7.5, 120000], [100000, 75, 38000])
 print(a.GetChiffreAffaire())
