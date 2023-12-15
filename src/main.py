@@ -63,8 +63,28 @@ import time
 # for gagnant_ref in groupes_gagnants:
 #     print(gagnant_ref)
 
+# Initialisation des valeurs pour les distributeurs et les gammes de prix
 distrib_a = ['A', 0.2, 1, 1000]
 distrib_b = ['B', 0.2, 1.2, 5000000]
 
-a = Entreprise("test", distrib_a, "MQ", [30000, 7.5, 120000], [100000, 75, 38000])
+gamme_prix = {True: {'HQ': 5},
+              False: {'LQ': 31.5, 'MQ': 36, 'HQ': 40.5}}
+
+# Création d'une entreprise et ajout de produits
+a = Entreprise()
+a.Begin("AeroBeats", distrib_a, 360000)
+a.AddProduit("ecouteurs",
+             "Ecouteurs filaires",
+             {'is_filaire': True, 'gamme': 'MQ'},
+             7.5, gamme_prix[True]['HQ'],
+             30000,
+             120000)
+a.AddProduit("ecouteurs",
+             "Ecouteurs bluetooth",
+             {'is_filaire': False, 'gamme': 'MQ'},
+             75, gamme_prix[False]['MQ'],
+             100000,
+             38000)
+
+# Affichage du chiffre d'affaires total de l'entreprise
 print(a.GetChiffreAffaire())
