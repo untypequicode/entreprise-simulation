@@ -1,4 +1,4 @@
-from groupe import Groupe, Entreprise
+from marche import Marche, Entreprise
 import time
 
 
@@ -71,20 +71,22 @@ gamme_prix = {True: {'HQ': 5},
               False: {'LQ': 31.5, 'MQ': 36, 'HQ': 40.5}}
 
 # Création d'une entreprise et ajout de produits
-a = Entreprise()
-a.Begin("AeroBeats", distrib_a, 360000)
-a.AddProduit("ecouteurs",
-             "Ecouteurs filaires",
+a = Marche()
+a.Begin({"ecouteurs_filaires": 800000, "ecouteurs_bluetooth": 300000})
+a.AddEntreprise()
+a.BeginEntreprise(-1, "AeroBeats", distrib_a, 360000)
+a.AddProduitEntreprise(-1, "ecouteurs",
+             "ecouteurs_filaires",
              {'is_filaire': True, 'gamme': 'MQ'},
              7.5, gamme_prix[True]['HQ'],
              30000,
              120000)
-a.AddProduit("ecouteurs",
-             "Ecouteurs bluetooth",
+a.AddProduitEntreprise(-1, "ecouteurs",
+             "ecouteurs_bluetooth",
              {'is_filaire': False, 'gamme': 'MQ'},
              75, gamme_prix[False]['MQ'],
              100000,
              38000)
 
 # Affichage du chiffre d'affaires total de l'entreprise
-print(a.GetChiffreAffaire())
+print(a.GetGagnant().GetChiffreAffaire())
