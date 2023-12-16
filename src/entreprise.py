@@ -152,4 +152,3 @@ class Entreprise:
                 self.__m_chiffre_affaire += produit.GetVentesEnvisagees() * produit.GetPrixDeVente() - (produit.GetBudgetPublicitaire() + produit.GetPrixFournisseur() * produit.GetVentesEnvisagees() + produit.GetVentesEnvisagees() * produit.GetPrixDeVente() * self.__m_distributeur.GetMarge())
         self.__m_chiffre_affaire -= self.__m_distributeur.GetDroitEntree() + self.GetSalaires()
         self.__m_chiffre_affaire = max(self.__m_chiffre_affaire, -1)
-        self.__m_chiffre_affaire -= self.__m_distributeur.GetDroitEntree()
