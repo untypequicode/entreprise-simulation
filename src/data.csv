@@ -1,0 +1,5 @@
+nom;chiffre_affaire;salaires;distributeur;marge;coefficient_augmentation;droit_entree;produits
+Entreprise 0;-1;360000;A;0.2;1;1000;{'ecouteurs': [<produit.Produit object at 0x000001C8DA4D3090>, <produit.Produit object at 0x000001C8DA4D3110>]}
+Entreprise 0;-1;360000;A;0.2;1;1000;{'ecouteurs': [<produit.Produit object at 0x000001C8DA4D31D0>, <produit.Produit object at 0x000001C8DA4D3210>]}
+Entreprise 0;-1;360000;B;0.2;1.2;5000000;{'ecouteurs': [<produit.Produit object at 0x000001C8DA4D3090>, <produit.Produit object at 0x000001C8DA4D3110>]}
+Entreprise 0;-1;360000;B;0.2;1.2;5000000;{'ecouteurs': [<produit.Produit object at 0x000001C8DA4D31D0>, <produit.Produit object at 0x000001C8DA4D3210>]}

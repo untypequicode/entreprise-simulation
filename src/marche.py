@@ -141,7 +141,7 @@ class Marche:
         """
         self.__m_entreprises.pop(index)
 
-    def BeginEntreprise(self, index: int, nom: str, distributeur: list, salaire: float, produits: dict = None) -> None:
+    def BeginEntreprise(self, index: int, nom: str, salaire: float, distributeur: list = None, produits: dict = None) -> None:
         """
         Initialise les valeurs d'une entreprise spécifique sur le marché.
 
@@ -152,7 +152,7 @@ class Marche:
         - salaire (float) : Salaire de l'entreprise.
         - produits (dict or None) : Produits de l'entreprise. Si None, l'entreprise est créée sans produits.
         """
-        self.GetEntreprise(index).Begin(nom, distributeur, salaire, produits)
+        self.GetEntreprise(index).Begin(nom, salaire, distributeur, produits)
 
     def SetNomEntreprise(self, index: int, nom: str) -> None:
         """
@@ -247,8 +247,8 @@ class Marche:
                              id: str,
                              nom: str,
                              informations: dict,
-                             prix_de_vente: float,
                              prix_fournisseur: float,
+                             prix_de_vente: float,
                              budget_publicitaire: int,
                              ventes_envisagees: int) -> None:
         """
@@ -269,8 +269,8 @@ class Marche:
         self.GetEntreprise(index).AddProduit(id,
                                              nom,
                                              informations,
-                                             prix_de_vente,
                                              prix_fournisseur,
+                                             prix_de_vente,
                                              budget_publicitaire,
                                              ventes_envisagees)
 

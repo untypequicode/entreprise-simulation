@@ -1,4 +1,4 @@
-from marche import Marche, Entreprise
+from simulation import Simulation, Marche, Entreprise
 import time
 
 
@@ -74,19 +74,55 @@ gamme_prix = {True: {'HQ': 5},
 a = Marche()
 a.Begin({"ecouteurs_filaires": 800000, "ecouteurs_bluetooth": 300000})
 a.AddEntreprise()
-a.BeginEntreprise(-1, "AeroBeats", distrib_a, 360000)
+a.BeginEntreprise(-1, "AeroBeats", 360000, distrib_a)
 a.AddProduitEntreprise(-1, "ecouteurs",
              "ecouteurs_filaires",
-             {'is_filaire': True, 'gamme': 'MQ'},
-             7.5, gamme_prix[True]['HQ'],
+             {'is_filaire': True, 'gamme': 'HQ'},
+                       gamme_prix[True]['HQ'],
+             7.5,
              30000,
              120000)
 a.AddProduitEntreprise(-1, "ecouteurs",
              "ecouteurs_bluetooth",
              {'is_filaire': False, 'gamme': 'MQ'},
-             75, gamme_prix[False]['MQ'],
+                       gamme_prix[False]['MQ'],
+             75,
              100000,
              38000)
 
 # Affichage du chiffre d'affaires total de l'entreprise
-print(a.GetGagnant().GetChiffreAffaire())
+# print(a.GetGagnant().GetChiffreAffaire())
+
+nombre_entreprises = 2
+b = Simulation()
+nb_filaire = 800000
+nb_bluetooth = 300000
+b.Begin({"ecouteurs_filaires": nb_filaire, "ecouteurs_bluetooth": nb_bluetooth}, nombre_entreprises, 360000)
+b.BeginSimulation([distrib_a, distrib_b],
+                  [
+                      {"id": "ecouteurs",
+                       "nom": "ecouteurs_filaires",
+                       "informations": {'is_filaire': True, 'gamme': 'HQ'},
+                       "prix_fournisseur": gamme_prix[True]['HQ']},
+
+                      {"id": "ecouteurs",
+                       "nom": "ecouteurs_bluetooth",
+                       "informations": {'is_filaire': False, 'gamme': 'MQ'},
+                        "prix_fournisseur": gamme_prix[False]['MQ']}
+                  ],
+
+                  [
+                      {"prix_de_vente": [gamme_prix[True]['HQ'], 20, 2.5],
+                       "budget_publicitaire": [20000, 40000, 10000],
+                       "ventes_envisagees": [nb_filaire//nombre_entreprises - nb_filaire*.1,
+                                             nb_filaire//nombre_entreprises + nb_filaire*.1,
+                                             (nb_filaire*.05)]},
+
+                      {"prix_de_vente": [gamme_prix[False]['MQ'], 100, 2.5],
+                       "budget_publicitaire": [80000, 120000, 20000],
+                       "ventes_envisagees": [nb_bluetooth//nombre_entreprises - nb_bluetooth*.05,
+                                             nb_bluetooth//nombre_entreprises + nb_bluetooth*.05,
+                                             (nb_bluetooth*.025)]}
+                  ])
+b.Simuler()
+print(b.GetMarche().GetGagnant().GetChiffreAffaire())

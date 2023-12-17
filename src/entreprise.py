@@ -13,7 +13,7 @@ class Entreprise:
         self.__m_chiffre_affaire = 0
         self.__m_salaires = 0
 
-    def Begin(self, nom: str, distributeur: list, salaire: int, produits: dict = None) -> None:
+    def Begin(self, nom: str, salaire: int, distributeur: list = None, produits: dict = None) -> None:
         """
         Initialise les valeurs de l'entreprise.
 
@@ -24,7 +24,8 @@ class Entreprise:
         - produits (dict) : Produits de l'entreprise (facultatif).
         """
         self.SetNom(nom)
-        self.SetDistributeur(distributeur)
+        if distributeur is not None:
+            self.SetDistributeur(distributeur)
         self.SetSalaires(salaire)
         if produits is not None:
             self.SetProduits(produits)
@@ -105,8 +106,8 @@ class Entreprise:
                    id: str,
                    nom: str,
                    informations: dict,
-                   prix_de_vente: float,
                    prix_fournisseur: float,
+                   prix_de_vente: float,
                    budget_publicitaire: int,
                    ventes_envisagees: int) -> None:
         """

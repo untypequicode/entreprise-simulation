@@ -27,7 +27,8 @@ class Produit:
         self.SetPrixFournisseur(prix_fournisseur)
         self.SetPrixDeVente(max(self.GetPrixFournisseur(), prix_de_vente))
         self.SetBudgetPublicitaire(budget_publicitaire)
-        self.SetVentesEnvisagees(max(self.GetBudgetPublicitaire() // self.GetPrixDeVente(), ventes_envisagees))
+        if self.GetPrixDeVente() != 0:
+            self.SetVentesEnvisagees(max(self.GetBudgetPublicitaire() // self.GetPrixDeVente(), ventes_envisagees))
 
     def SetNom(self, nom: str) -> None:
         """
