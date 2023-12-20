@@ -1,6 +1,5 @@
-from groupe import Groupe, Entreprise
-import time
-
+from groupe import Entreprise
+# import time
 
 # groupes_gagnants = []
 #
